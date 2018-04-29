@@ -8,24 +8,28 @@ public class ThreadedReverseGreeting {
 	// but you should structure your program such that the threads print their
 	// greetings in reverse order.
 	public static void main(String[] args) {
-	
-		
-		
-		for (int i = 1; i < 50; i++) {
-			int number = i;
-			
-	/*	Thread one = new Thread(() -> {
-			System.out.println("Hello from read " + number);
-		});
-*/
+
+		ThreadedReverseGreeting trg = new ThreadedReverseGreeting();
+
 		Thread r1 = new Thread(() -> {
-			//one.start();
-			System.out.println("Hello from Thread " + number);
+			trg.Threadmaker(50);
 		});
 		r1.start();
+	}
+
+	private void Threadmaker(int n) {
+		// TODO Auto-generated method stub
+
+		if (n <= 0) {
+
+		} else {
+			Thread t = new Thread(() -> {
+				Threadmaker(n - 1);
+				System.out.println("Hello from thread " + n);
+				
+			});
+t.start();
 		}
 
-		
-		
-	}}
-
+	}
+}
